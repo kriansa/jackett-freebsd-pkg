@@ -7,9 +7,9 @@ This is a package builder for the Jackett binaries available on their [github re
 On a FreeBSD Jail, pull this repository then run the following commands:
 
 ```bash
-$ make all
-$ sysrc jackett_enable=YES
-$ service jackett start
+# make all
+# sysrc jackett_enable=YES
+# service jackett start
 ```
 
 ## Quick info
