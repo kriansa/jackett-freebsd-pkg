@@ -20,13 +20,3 @@ prefix: /usr/local
 deps: {
   mono: { origin: lang/mono }
 }
-scripts: {
-  post-install: <<EOD
-    #!/bin/sh
-    echo post-install
-EOD
-  pre-install: <<EOD
-    #!/bin/sh
-    echo pre-install
-EOD
-}
