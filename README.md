@@ -21,5 +21,4 @@ $ service jackett start
 
 Apache 2.0
 
----
-jackett-releases: https://github.com/Jackett/Jackett/releases
+[jackett-releases]: https://github.com/Jackett/Jackett/releases
