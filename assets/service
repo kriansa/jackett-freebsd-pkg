@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# PROVIDE: jackett
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+# Add the following lines to /etc/rc.conf to enable jackett:
+# jackett_enable="YES"
+# Or use the command `sysrc jackett_enable=YES`
+#
+# The logs are stored at /usr/local/var/Jackett/log.txt
+
+. /etc/rc.subr
+
+name=jackett
+rcvar=jackett_enable
+jackett_user=nobody
+
+command=/usr/sbin/daemon
+procname=/usr/local/bin/mono
+command_args="-f $procname --debug /usr/local/lib/jackett/JackettConsole.exe --NoUpdates"
+data_dir=/usr/local/var
+jackett_data_dir=$data_dir/Jackett
+start_precmd=jackett_precmd
+
+jackett_precmd() {
+	export XDG_CONFIG_HOME=${data_dir}
+	if [ ! -d ${jackett_data_dir} ]; then
+		install -d -o ${jackett_user} ${jackett_data_dir}
+	fi
+}
+
+load_rc_config $name
+: ${jackett_enable:=yes}
+
+run_rc_command "$1"
