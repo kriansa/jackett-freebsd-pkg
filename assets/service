@@ -16,11 +16,13 @@ name=jackett
 rcvar=jackett_enable
 jackett_user=nobody
 
-command=/usr/sbin/daemon
-procname=/usr/local/bin/mono
-command_args="-f $procname --debug /usr/local/lib/jackett/JackettConsole.exe --NoUpdates"
 data_dir=/usr/local/var
 jackett_data_dir=$data_dir/Jackett
+
+pidfile="${jackett_data_dir}/jackett.pid"
+command=/usr/sbin/daemon
+procname=/usr/local/bin/mono
+command_args="-f $procname --debug /usr/local/lib/jackett/JackettConsole.exe --NoUpdates --PIDFile $pidfile"
 start_precmd=jackett_precmd
 
 jackett_precmd() {
